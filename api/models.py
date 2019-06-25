@@ -1,5 +1,5 @@
-from trinity import db, login_manager
 from flask_login import UserMixin
+from api.__init__ import login_manager, db
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -17,4 +17,4 @@ class User(db.Model, UserMixin):
 	password = db.Column(db.String(128), unique = False, nullable = False)
 
 	def __repr__(self):
-		return f"User('{self.id}', '{self.name}', '{self.about')"
+		return "User('{self.id}', '{self.name}', '{self.about')"

@@ -1,7 +1,15 @@
 import os
 from flask import Flask, send_from_directory
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '5791628cb0b12ce6c676dfde280ba246'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+db = SQLAlchemy(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
 app.config['PWA_ASSETS'] = os.path.join(os.getcwd(), 'pwa', 'dist')
 
 
