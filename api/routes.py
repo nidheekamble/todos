@@ -85,7 +85,7 @@ def signup():
 	return 'Not validated'
 '''
 
-@app.route('/api/signup', methods=['POST'])
+@app.route('/api/signup', methods=['GET', 'POST'])
 def signup():
 	name = request.form['name']
 	pw = request.form['password']
