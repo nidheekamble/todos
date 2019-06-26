@@ -10,8 +10,3 @@ class UserForm(FlaskForm):
 	about = StringField('About', validators = [DataRequired(), Length(max = 120)])
 	password = PasswordField('Password', validators = [DataRequired()])
 	submit = SubmitField('Done')
-
-	def validateEmail(self, Email):
-		user = User.query.filter_by(email=email.data).first()
-		if user:
-			raise ValidationError('Email taken, enter a different one')

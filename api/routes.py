@@ -1,4 +1,4 @@
-from api import app
+from api import app, db
 import time
 import hashlib
 from sqlalchemy import or_, and_
@@ -87,9 +87,8 @@ def signup():
 
 @app.route('/api/signup', methods=['GET', 'POST'])
 def signup():
-	name = request.form['name']
-	pw = request.form['password']
-	about = request.form['about']
+	form = UserForm()
+	pw = form.password.data
 
 	s = 0
 	for char in pw:
@@ -97,7 +96,9 @@ def signup():
 		s = s+a #sum of ASCIIs acts as the salt
 	hashed_password = (str)((hashlib.sha512((str(s).encode('utf-8'))+((pw).encode('utf-8')))).hexdigest())
 
-	user = User(name=name, password = hashed_password, about=about)
+	user = User(name=form.name.data, password = hashed_password, about=form.about.data)
+	db.session.add(user)
+	ad.session.commit()
 	print (user)
 	if user:
 		return ('', 200)
