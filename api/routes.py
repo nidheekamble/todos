@@ -98,8 +98,9 @@ def signup():
 
 	user = User(name=form.name.data, password = hashed_password, about=form.about.data)
 	db.session.add(user)
-	ad.session.commit()
+	db.session.commit()
 	print (user)
 	if user:
 		return ('', 200)
 	return ('', 400)
+s
