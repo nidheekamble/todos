@@ -1,6 +1,6 @@
 import React from 'react';
 import {Jumbotron} from 'reactstrap';
-
+import {Link} from 'react-router-dom';
 
 const makeRequest = new Promise((resolve, reject) => {
 
@@ -34,6 +34,7 @@ class GreetingMessageAJAX extends React.Component {
     return (
       <Jumbotron>
         <h1>{this.state.msg}</h1>
+        <Link to={'/signup'}>Signup</Link>
       </Jumbotron>
     )
   }
