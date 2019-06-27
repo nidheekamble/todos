@@ -103,4 +103,3 @@ def signup():
 	if user:
 		return ('', 200)
 	return ('', 400)
-s
